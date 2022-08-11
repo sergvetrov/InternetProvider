@@ -8,13 +8,13 @@ import java.util.List;
 
 
 public class TariffImpl implements ITariff {
-    private static final String GET_ALL = "SELECT * FROM provider.tariffs";
-    private static final String GET_ALL_BY_SERVICES_ID = "SELECT * FROM provider.tariffs WHERE services_id = ?";
-    private static final String GET_BY_ID = "SELECT id, name, description, price, services_id FROM provider.tariffs WHERE id = ?";
-    private static final String GET_BY_NAME = "SELECT id, name, description, price, services_id FROM provider.tariffs WHERE name = ?";
-    private static final String CREATE = "INSERT INTO provider.tariffs (name, price, description, services_id) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE provider.tariffs SET name = ?, description = ?, price = ? WHERE id = ?";
-    private static final String DELETE = "DELETE FROM provider.tariffs WHERE id = ?";
+    private static final String GET_ALL = "SELECT * FROM internet_provider.tariffs";
+    private static final String GET_ALL_BY_SERVICES_ID = "SELECT * FROM internet_provider.tariffs WHERE services_id = ?";
+    private static final String GET_BY_ID = "SELECT id, name, description, price, services_id FROM internet_provider.tariffs WHERE id = ?";
+    private static final String GET_BY_NAME = "SELECT id, name, description, price, services_id FROM internet_provider.tariffs WHERE name = ?";
+    private static final String CREATE = "INSERT INTO internet_provider.tariffs (name, price, description, services_id) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE internet_provider.tariffs SET name = ?, description = ?, price = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM internet_provider.tariffs WHERE id = ?";
 
     private DBManager instance = DBManager.getInstance();
     private QueryBuilder queryBuilder = new TariffQueryBuilder();

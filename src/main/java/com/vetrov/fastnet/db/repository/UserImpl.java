@@ -10,18 +10,18 @@ import java.util.List;
 
 
 public class UserImpl implements IUser {
-    private static final String GET_ALL = "SELECT * FROM provider.users";
-    private static final String GET_BY_ID = "SELECT id, login, password, first_name, last_name, surname, blocked, roles_id, contact_details_id, accounts_id FROM provider.users WHERE id = ?";
-    private static final String GET_BY_LOGIN = "SELECT id, login, password, first_name, last_name, surname, blocked, roles_id, contact_details_id, accounts_id FROM provider.users WHERE login = ?";
-    private static final String CREATE = "INSERT INTO provider.users (login, password, first_name, last_name, surname, blocked, roles_id, contact_details_id, accounts_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE provider.users SET login = ?, password = ?, first_name = ?, last_name = ?, surname = ?, blocked = ?, roles_id = ? WHERE id = ?";
-    private static final String DELETE = "DELETE FROM provider.users WHERE id = ?";
+    private static final String GET_ALL = "SELECT * FROM internet_provider.users";
+    private static final String GET_BY_ID = "SELECT id, login, password, first_name, last_name, surname, blocked, roles_id, contact_details_id, accounts_id FROM internet_provider.users WHERE id = ?";
+    private static final String GET_BY_LOGIN = "SELECT id, login, password, first_name, last_name, surname, blocked, roles_id, contact_details_id, accounts_id FROM internet_provider.users WHERE login = ?";
+    private static final String CREATE = "INSERT INTO internet_provider.users (login, password, first_name, last_name, surname, blocked, roles_id, contact_details_id, accounts_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE internet_provider.users SET login = ?, password = ?, first_name = ?, last_name = ?, surname = ?, blocked = ?, roles_id = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM internet_provider.users WHERE id = ?";
 
-    private static final String ADD_LINK_USERS_HAS_TRAFFICS = "INSERT INTO provider.users_has_tariffs (users_id, tariffs_id) VALUES (?, ?)";
+    private static final String ADD_LINK_USERS_HAS_TRAFFICS = "INSERT INTO internet_provider.users_has_tariffs (users_id, tariffs_id) VALUES (?, ?)";
     private static final String GET_LINK_USERS_HAS_TRAFFICS = "SELECT t.id, t.name, t.description, t.price, t.services_id FROM tariffs AS t JOIN users_has_tariffs AS uht ON t.id = uht.tariffs_id AND uht.users_id = (SELECT id FROM users WHERE id = ?)";
-    private static final String DELETE_LINK_USERS_HAS_TRAFFICS = "DELETE FROM provider.users_has_tariffs WHERE users_id = ?";
+    private static final String DELETE_LINK_USERS_HAS_TRAFFICS = "DELETE FROM internet_provider.users_has_tariffs WHERE users_id = ?";
 
-    private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'provider' AND TABLE_NAME = 'users'";
+    private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'internet_provider' AND TABLE_NAME = 'users'";
 
     private DBManager instance = DBManager.getInstance();
     private QueryBuilder queryBuilder = new UserQueryBuilder();

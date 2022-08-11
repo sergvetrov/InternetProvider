@@ -65,7 +65,7 @@ public class ContextListener implements ServletContextListener {
         // initialize commands container
         // just load class to JVM
         try {
-            Class.forName("ua.nure.zarazka.web.command.CommandFactory");
+            Class.forName("com.vetrov.fastnet.web.command.CommandFactory");
         } catch (ClassNotFoundException ex) {
             throw new RuntimeException(ex);
         }
@@ -81,7 +81,7 @@ public class ContextListener implements ServletContextListener {
     private void initLog4J(ServletContext servletContext) {
         log("Log4J initialization started");
         try {
-            PropertyConfigurator.configure(servletContext.getRealPath("log4j.properties"));
+            PropertyConfigurator.configure(servletContext.getRealPath("WEB-INF/classes/log4j.properties"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }

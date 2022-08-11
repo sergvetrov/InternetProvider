@@ -8,12 +8,12 @@ import java.util.List;
 
 
 public class ContactDetailsImpl implements IContactDetails {
-    private static final String CREATE = "INSERT INTO provider.contact_details (id, city, street, home, apartment, email, phone) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String GET_ALL = "SELECT * FROM provider.contact_details";
-    private static final String GET_BY_ID = "SELECT id, city, street, home, apartment, email, phone FROM provider.contact_details WHERE id = ?";
-    private static final String UPDATE = "UPDATE provider.contact_details SET email = ?, phone = ? WHERE id = ?";
-    private static final String DELETE = "DELETE FROM provider.contact_details WHERE id = ?";
-    private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'provider' AND TABLE_NAME = 'users'";
+    private static final String CREATE = "INSERT INTO internet_provider.contact_details (id, city, street, home, apartment, email, phone) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String GET_ALL = "SELECT * FROM internet_provider.contact_details";
+    private static final String GET_BY_ID = "SELECT id, city, street, home, apartment, email, phone FROM internet_provider.contact_details WHERE id = ?";
+    private static final String UPDATE = "UPDATE internet_provider.contact_details SET email = ?, phone = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM internet_provider.contact_details WHERE id = ?";
+    private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'internet_provider' AND TABLE_NAME = 'users'";
 
     private DBManager instance = DBManager.getInstance();
     private QueryBuilder queryBuilder = new ContactDetailsQueryBuilder();

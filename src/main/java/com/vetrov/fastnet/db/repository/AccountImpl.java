@@ -9,12 +9,12 @@ import java.util.List;
 
 
 public class AccountImpl implements IAccount {
-    private static final String CREATE = "INSERT INTO provider.accounts (id, number, balance) VALUES (?, ?, ?)";
-    private static final String GET_ALL = "SELECT * FROM provider.accounts";
-    private static final String GET_BY_ID = "SELECT id, number, balance FROM provider.accounts WHERE id = ?";
-    private static final String UPDATE = "UPDATE provider.accounts SET balance = ? WHERE id = ?";
-    private static final String DELETE = "DELETE FROM provider.accounts WHERE id = ?";
-    private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'provider' AND TABLE_NAME = 'users'";
+    private static final String CREATE = "INSERT INTO internet_provider.accounts (id, number, balance) VALUES (?, ?, ?)";
+    private static final String GET_ALL = "SELECT * FROM internet_provider.accounts";
+    private static final String GET_BY_ID = "SELECT id, number, balance FROM internet_provider.accounts WHERE id = ?";
+    private static final String UPDATE = "UPDATE internet_provider.accounts SET balance = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM internet_provider.accounts WHERE id = ?";
+    private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'internet_provider' AND TABLE_NAME = 'users'";
     private static final String GET_MAX_ID = "SELECT MAX(id) FROM accounts";
 
     private DBManager instance = DBManager.getInstance();
