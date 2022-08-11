@@ -3,7 +3,7 @@
 
 <div class="container">
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="../../index.jsp">НЕВОЛЯ</a>
+        <a class="navbar-brand" href="../../index.jsp">Fastnet</a>
         <div class="dropdown">
             <button class="btn btn-outline-secondary btn-sm" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

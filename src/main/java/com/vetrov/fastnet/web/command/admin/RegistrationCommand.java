@@ -65,7 +65,7 @@ public class RegistrationCommand implements ICommand {
 
         User newUser = new User();
         newUser.setLogin(details.getPhone());
-        newUser.setPassword(String.valueOf(account.getNumber()));
+        newUser.setPassword(surname + firstName + account.getNumber());
         newUser.setSurname(surname);
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);

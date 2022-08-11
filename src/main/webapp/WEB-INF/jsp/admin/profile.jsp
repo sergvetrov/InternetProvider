@@ -240,8 +240,8 @@
                 <div class="row">
                     <div class="col">
                         <small class="form-text text-muted">
-                            © 2002-2018
-                            ООО «НЕВОЛЯ»
+                            © 2022-2022
+                            ООО «Fastnet»
                         </small>
                     </div>
                     <div class="col">

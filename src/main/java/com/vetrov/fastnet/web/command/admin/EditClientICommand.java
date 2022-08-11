@@ -42,6 +42,10 @@ public class EditClientICommand implements ICommand {
             forward = blockUser(response, userService, user);
         }
 
+        if (request.getParameter("btnDelete") != null) {
+            forward = deleteUser(response, userService, user);
+        }
+
         if (request.getParameter("btnChangeUser") != null) {
             forward = update(request, response, userService, user);
         }
@@ -88,6 +92,18 @@ public class EditClientICommand implements ICommand {
             user.setBlocked(true);
             userService.update(user);
         }
+        try {
+            response.sendRedirect(resp);
+            resp = Path.COMMAND_REDIRECT;
+        } catch (IOException e) {
+            resp = Path.PAGE_ERROR_PAGE;
+        }
+        return resp;
+    }
+
+    private String deleteUser(HttpServletResponse response, IUserService userService, User user) {
+        String resp = Path.COMMAND_MAIN;
+        userService.remove((int) user.getId());
         try {
             response.sendRedirect(resp);
             resp = Path.COMMAND_REDIRECT;

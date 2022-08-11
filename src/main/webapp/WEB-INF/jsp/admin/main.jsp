@@ -554,6 +554,18 @@
                                                             </form>
                                                         </div>
                                                         <div class="ml-1">
+                                                            <form action="controller?action=edit_client"
+                                                                  method="post">
+                                                                <input type="hidden" name="user_id"
+                                                                       value="${fullUser.id}">
+                                                                <button type="submit"
+                                                                        class="btn btn-outline-secondary btn-sm"
+                                                                        name="btnDelete">
+                                                                        <i class="material-icons">delete</i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="ml-1">
                                                             <form method="post" action="controller?action=profile">
                                                                 <input type="hidden" name="user_id"
                                                                        value="${fullUser.id}">
