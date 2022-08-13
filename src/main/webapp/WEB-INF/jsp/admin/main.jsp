@@ -4,9 +4,9 @@
 <!doctype html>
 <html>
 <c:set var="title" value="Панель администратора" scope="page"/>
-<jsp:include page="/WEB-INF/templates/_head.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_head.jsp" />
 <body>
-<jsp:include page="/WEB-INF/templates/_menu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_menu.jsp" />
 <div class="container">
     <div class="card mt-3 mb-3">
         <div class="card-header">
@@ -842,6 +842,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="/WEB-INF/templates/_scripts.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_scripts.jsp" />
 </body>
 </html>

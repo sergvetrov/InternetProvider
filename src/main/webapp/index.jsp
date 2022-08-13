@@ -4,9 +4,9 @@
 <!doctype html>
 <html>
 <c:set var="title" value="Страница входа" scope="page"/>
-<jsp:include page="/WEB-INF/templates/_head.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_head.jsp"/>
 <body>
-<jsp:include page="/WEB-INF/templates/_menu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_menu.jsp"/>
 <div class="container">
     <div class="row  mt-5">
         <div class="col">
@@ -27,6 +27,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="/WEB-INF/templates/_scripts.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_scripts.jsp"/>
 </body>
 </html>

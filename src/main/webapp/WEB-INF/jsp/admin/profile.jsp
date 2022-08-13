@@ -3,10 +3,10 @@
 
 <!doctype html>
 <html>
-<%--<c:set var="title" value="Аккаунт" scope="page"/>--%>
-<jsp:include page="/WEB-INF/templates/_head.jsp"></jsp:include>
+<c:set var="title" value="Аккаунт" scope="page"/>
+<jsp:include page="/WEB-INF/templates/_head.jsp"/>
 <body>
-<jsp:include page="/WEB-INF/templates/_menu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_menu.jsp" />
 <div class="container">
     <div class="card border-dark p-2 mt-3 mb-3">
         <div class="d-flex justify-content-start">
@@ -254,6 +254,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="/WEB-INF/templates/_scripts.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_scripts.jsp" />
 </body>
 </html>

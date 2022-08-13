@@ -4,7 +4,7 @@
 <!doctype html>
 <html>
 <c:set var="title" value="Страница входа" scope="page"/>
-<jsp:include page="/WEB-INF/templates/_head.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_head.jsp"/>
 <body>
 <div class="container">
     <div class="d-flex justify-content-center">
@@ -30,6 +30,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="/WEB-INF/templates/_scripts.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/templates/_scripts.jsp"/>
 </body>
 </html>
