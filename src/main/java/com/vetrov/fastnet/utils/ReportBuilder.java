@@ -53,7 +53,7 @@ public class ReportBuilder {
             personalInformation = new Paragraph("Логин: " + user.getDetails().getPhone(), new Font(arial, 12));
             section1.add(personalInformation);
 
-            personalInformation = new Paragraph("Пароль: " + user.getAccount().getNumber(), new Font(arial, 12));
+            personalInformation = new Paragraph("Пароль: " + user.getPassword(), new Font(arial, 12));
             section1.add(personalInformation);
 
             PdfPTable t = new PdfPTable(3);

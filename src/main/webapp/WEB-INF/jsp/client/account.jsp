@@ -4,10 +4,10 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <!doctype html>
 <html>
-<c:set var="title" value="Страница входа" scope="page"/>
-<jsp:include page="/WEB-INF/templates/_head.jsp" />
 <body>
-<jsp:include page="/WEB-INF/templates/_menu.jsp" />
+<c:set var="title" value="Страница входа" scope="page"/>
+<%@ include file="/WEB-INF/templates/_head.jsp"%>
+<%@ include file="/WEB-INF/templates/_menu.jsp"%>
 <div class="container">
     <div class="card border-primary mt-3 mb-3 p-3">
         <div class="row">
@@ -156,7 +156,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <div class="d-flex">
-                                        <div class="flex-fill">
+                                        <div class="flex-fill ml-1">
                                             <button class="btn btn-outline-success" style="width: 100%"
                                                     type="button"
                                                     data-toggle="collapse"
@@ -196,12 +196,36 @@
                                                 <tr>
                                                     <th scope="col">
                                                         <div class="d-flex justify-content-center">
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="name_inet_asc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_down
+                                                                </i>
+                                                            </button>
                                                             <fmt:message key="table.th.tariff"/>
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="name_inet_desc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_up
+                                                                </i>
+                                                            </button>
                                                         </div>
                                                     </th>
                                                     <th scope="col">
                                                         <div class="d-flex justify-content-center">
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="price_inet_asc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_down
+                                                                </i>
+                                                            </button>
                                                             <fmt:message key="table.th.cost"/>
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="price_inet_desc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_up
+                                                                </i>
+                                                            </button>
                                                         </div>
                                                     </th>
                                                     <th scope="col">
@@ -266,12 +290,36 @@
                                                 <tr>
                                                     <th scope="col">
                                                         <div class="d-flex justify-content-center">
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="name_iptv_asc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_down
+                                                                </i>
+                                                            </button>
                                                             <fmt:message key="table.th.tariff"/>
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="name_iptv_desc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_up
+                                                                </i>
+                                                            </button>
                                                         </div>
                                                     </th>
                                                     <th scope="col">
                                                         <div class="d-flex justify-content-center">
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="price_iptv_asc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_down
+                                                                </i>
+                                                            </button>
                                                             <fmt:message key="table.th.cost"/>
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="price_iptv_desc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_up
+                                                                </i>
+                                                            </button>
                                                         </div>
                                                     </th>
                                                     <th scope="col">
@@ -335,12 +383,36 @@
                                                 <tr>
                                                     <th scope="col">
                                                         <div class="d-flex justify-content-center">
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="name_phone_asc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_down
+                                                                </i>
+                                                            </button>
                                                             <fmt:message key="table.th.tariff"/>
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="name_phone_desc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_up
+                                                                </i>
+                                                            </button>
                                                         </div>
                                                     </th>
                                                     <th scope="col">
                                                         <div class="d-flex justify-content-center">
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="price_phone_asc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_down
+                                                                </i>
+                                                            </button>
                                                             <fmt:message key="table.th.cost"/>
+                                                            <button type="submit" class="btn btn-sm btn-link"
+                                                                    name="price_phone_desc">
+                                                                <i class="material-icons">
+                                                                    arrow_drop_up
+                                                                </i>
+                                                            </button>
                                                         </div>
                                                     </th>
                                                     <th scope="col">

@@ -3,9 +3,9 @@
 
 <!doctype html>
 <html>
-<c:set var="title" value="Страница входа" scope="page"/>
-<jsp:include page="/WEB-INF/templates/_head.jsp"/>
 <body>
+<c:set var="title" value="Страница входа" scope="page"/>
+<%@ include file="/WEB-INF/templates/_head.jsp"%>
 <div class="container">
     <div class="d-flex justify-content-center">
         <div class="card border-primary mb-3" style="width: 50%; margin-top: 100px ">

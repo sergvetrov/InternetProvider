@@ -3,10 +3,10 @@
 
 <!doctype html>
 <html>
-<c:set var="title" value="Панель администратора" scope="page"/>
-<jsp:include page="/WEB-INF/templates/_head.jsp" />
 <body>
-<jsp:include page="/WEB-INF/templates/_menu.jsp" />
+<c:set var="title" value="Панель администратора" scope="page"/>
+<%@ include file="/WEB-INF/templates/_head.jsp"%>
+<%@ include file="/WEB-INF/templates/_menu.jsp"%>
 <div class="container">
     <div class="card mt-3 mb-3">
         <div class="card-header">
