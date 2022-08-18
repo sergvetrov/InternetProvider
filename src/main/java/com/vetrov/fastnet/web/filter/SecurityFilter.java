@@ -2,13 +2,13 @@ package com.vetrov.fastnet.web.filter;
 
 import com.vetrov.fastnet.Path;
 import com.vetrov.fastnet.db.entity.Role;
-import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
+import org.apache.log4j.Logger;
 
 public class SecurityFilter implements Filter {
     private static final Logger log = Logger.getLogger(SecurityFilter.class);
@@ -20,35 +20,35 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
-        log.debug("Filter initialization starts");
+        log.info("Filter initialization starts");
 
         // roles
         accessMap.put(Role.ADMIN, asList(fConfig.getInitParameter("admin")));
         accessMap.put(Role.CLIENT, asList(fConfig.getInitParameter("client")));
-        log.trace("Access map --> " + accessMap);
+        log.info("Access map --> " + accessMap);
 
         // commons
         commons = asList(fConfig.getInitParameter("common"));
-        log.trace("Common commands --> " + commons);
+        log.info("Common commands --> " + commons);
 
         // out of control
         outOfControl = asList(fConfig.getInitParameter("out-of-control"));
-        log.trace("Out of control commands --> " + outOfControl);
+        log.info("Out of control commands --> " + outOfControl);
 
-        log.debug("Filter initialization finished");
+        log.info("Filter initialization finished");
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        log.debug("Filter starts");
+        log.info("Filter starts");
         if (accessAllowed(request)) {
-            log.debug("Filter finished");
+            log.info("Filter finished");
             chain.doFilter(request, response);
         } else {
             String errorMessages = "You do not have permission to access the requested resource";
             request.setAttribute("errorMessage", errorMessages);
 
-            log.trace("Set the request attribute: errorMessage --> " + errorMessages);
+            log.info("Set the request attribute: errorMessage --> " + errorMessages);
 
             request.getRequestDispatcher(Path.PAGE_ERROR_PAGE).forward(request, response);
         }
@@ -77,9 +77,9 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void destroy() {
-        log.debug("Filter destruction starts");
+        log.info("Filter destruction starts");
         // do nothing
-        log.debug("Filter destruction finished");
+        log.info("Filter destruction finished");
     }
 
     private List<String> asList(String param) {

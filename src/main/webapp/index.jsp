@@ -11,7 +11,7 @@
     <div class="row  mt-5">
         <div class="col">
             <div class="d-flex justify-content-center">
-                <img src="img/Internet2.jpg" style="width: 100%">
+                <img src="img/media.jpg" style="width: 100%">
             </div>
         </div>
     </div>
