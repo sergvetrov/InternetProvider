@@ -13,14 +13,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Set;
+import org.apache.log4j.Logger;
 
 public class ReportBuilder {
+    static Logger log = Logger.getLogger(ReportBuilder.class.getName());
     public static void contractPDF(HttpServletResponse response, User user) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
-            // if you want to save on the server
-            //PdfWriter.getInstance(document, new FileOutputStream("D:\\Projects\\IdeaProjects\\InternetProvider\\contract" + user.getAccount().getNumber() + ".pdf"));
             PdfWriter.getInstance(document, baos);
             document.open();
 
@@ -84,6 +84,7 @@ public class ReportBuilder {
             document.close();
 
             openInBrowser(response, baos);
+            log.info("Contract for user was created");
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
@@ -99,8 +100,6 @@ public class ReportBuilder {
                 tariffName = tariff.getName().replace('*', '_');
             }
 
-            // if you want to save on the server
-            //PdfWriter.getInstance(document, new FileOutputStream("D:\\Projects\\IdeaProjects\\InternetProvider\\tariff_" + tariffName + ".pdf"));
             PdfWriter.getInstance(document, baos);
             document.open();
 
@@ -134,6 +133,7 @@ public class ReportBuilder {
             document.close();
 
             openInBrowser(response, baos);
+            log.info("Tariffs for user generated to PDF");
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
