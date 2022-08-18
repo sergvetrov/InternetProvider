@@ -4,14 +4,17 @@ import com.vetrov.fastnet.Path;
 import com.vetrov.fastnet.db.entity.Tariff;
 import com.vetrov.fastnet.db.services.ITariffService;
 import com.vetrov.fastnet.db.services.TariffServiceImpl;
+import com.vetrov.fastnet.utils.ReportBuilder;
 import com.vetrov.fastnet.web.command.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 
 public class AddTariffCommand implements ICommand {
+    static Logger log = Logger.getLogger(AddTariffCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name").trim();
@@ -32,6 +35,7 @@ public class AddTariffCommand implements ICommand {
         try {
             response.sendRedirect(resp);
             resp = Path.COMMAND_REDIRECT;
+            log.info("Tariff was created");
         } catch (IOException e) {
             resp = Path.PAGE_ERROR_PAGE;
         }
