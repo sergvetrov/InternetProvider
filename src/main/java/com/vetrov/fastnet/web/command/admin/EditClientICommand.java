@@ -4,6 +4,7 @@ import com.vetrov.fastnet.Path;
 import com.vetrov.fastnet.db.entity.User;
 import com.vetrov.fastnet.db.services.*;
 import com.vetrov.fastnet.web.command.ICommand;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,9 @@ import java.util.HashSet;
 
 
 public class EditClientICommand implements ICommand {
+
+    private static final org.apache.log4j.Logger log = Logger.getLogger(EditClientICommand.class);
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         long id = Long.parseLong(request.getParameter("user_id"));
@@ -53,7 +57,9 @@ public class EditClientICommand implements ICommand {
         if (request.getParameter("btnBack") != null) {
             forward = goBack(request, response);
         }
+        log.info("Client changed");
         return forward;
+
     }
 
     private String update(HttpServletRequest request, HttpServletResponse response, IUserService userService, User user) {
@@ -80,6 +86,7 @@ public class EditClientICommand implements ICommand {
         } catch (IOException e) {
             resp = Path.PAGE_ERROR_PAGE;
         }
+        log.info("Client updated");
         return resp;
     }
 
@@ -98,6 +105,7 @@ public class EditClientICommand implements ICommand {
         } catch (IOException e) {
             resp = Path.PAGE_ERROR_PAGE;
         }
+        log.info("Client blocked");
         return resp;
     }
 
@@ -110,6 +118,7 @@ public class EditClientICommand implements ICommand {
         } catch (IOException e) {
             resp = Path.PAGE_ERROR_PAGE;
         }
+        log.info("Client deleted");
         return resp;
     }
 

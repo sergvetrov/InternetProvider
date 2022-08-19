@@ -5,7 +5,6 @@ import com.vetrov.fastnet.db.entity.Role;
 import com.vetrov.fastnet.db.entity.User;
 import com.vetrov.fastnet.db.services.IUserService;
 import com.vetrov.fastnet.db.services.UserServiceImpl;
-import com.vetrov.fastnet.utils.ReportBuilder;
 import com.vetrov.fastnet.web.command.ICommand;
 import org.apache.log4j.Logger;
 

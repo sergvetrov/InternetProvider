@@ -16,16 +16,7 @@ public class UserQueryBuilder extends QueryBuilder<User> {
         List<User> users = new ArrayList<>();
         while (rs.next()) {
             User user = new User();
-            user.setId(rs.getLong("id"));
-            user.setLogin(rs.getString("login"));
-            user.setPassword(rs.getString("password"));
-            user.setFirstName(rs.getString("first_name"));
-            user.setLastName(rs.getString("last_name"));
-            user.setSurname(rs.getString("surname"));
-            user.setBlocked(rs.getBoolean("blocked"));
-            user.setRoleId(rs.getInt("roles_id"));
-            user.setDetails(new ContactDetails(rs.getLong("contact_details_id")));
-            user.setAccount(new Account(rs.getLong("accounts_id")));
+            setUserInfo(rs, user);
             users.add(user);
         }
         return users;
@@ -35,17 +26,21 @@ public class UserQueryBuilder extends QueryBuilder<User> {
     public User getResult(ResultSet rs) throws SQLException {
         User user = new User();
         while (rs.next()) {
-            user.setId(rs.getLong("id"));
-            user.setLogin(rs.getString("login"));
-            user.setPassword(rs.getString("password"));
-            user.setFirstName(rs.getString("first_name"));
-            user.setLastName(rs.getString("last_name"));
-            user.setSurname(rs.getString("surname"));
-            user.setBlocked(rs.getBoolean("blocked"));
-            user.setRoleId(rs.getInt("roles_id"));
-            user.setDetails(new ContactDetails(rs.getLong("contact_details_id")));
-            user.setAccount(new Account(rs.getLong("accounts_id")));
+            setUserInfo(rs, user);
         }
         return user;
+    }
+
+    private void setUserInfo(ResultSet rs, User user) throws SQLException {
+        user.setId(rs.getLong("id"));
+        user.setLogin(rs.getString("login"));
+        user.setPassword(rs.getString("password"));
+        user.setFirstName(rs.getString("first_name"));
+        user.setLastName(rs.getString("last_name"));
+        user.setSurname(rs.getString("surname"));
+        user.setBlocked(rs.getBoolean("blocked"));
+        user.setRoleId(rs.getInt("roles_id"));
+        user.setDetails(new ContactDetails(rs.getLong("contact_details_id")));
+        user.setAccount(new Account(rs.getLong("accounts_id")));
     }
 }

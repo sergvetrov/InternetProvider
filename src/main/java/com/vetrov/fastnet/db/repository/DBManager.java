@@ -1,6 +1,7 @@
 package com.vetrov.fastnet.db.repository;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,6 +10,7 @@ import java.util.Properties;
 
 
 public class DBManager {
+    private static final Logger log = Logger.getLogger(DBManager.class);
     private static DBManager instance;
     private ComboPooledDataSource cpds;
 
@@ -21,7 +23,9 @@ public class DBManager {
     private DBManager() {
         try {
             init();
+            log.info("Pool created");
         } catch (Exception e) {
+            log.warn("Pool couldn't create");
             e.printStackTrace();
         }
     }
@@ -44,7 +48,9 @@ public class DBManager {
         Connection conn = null;
         try {
             conn = this.cpds.getConnection();
+            log.info("DB connection created");
         } catch (SQLException e) {
+            log.warn("DB connection couldn't create");
             e.printStackTrace();
         }
         return conn;
@@ -58,7 +64,9 @@ public class DBManager {
     public void closeConnection(Connection conn) {
         try {
             conn.close();
+            log.info("DB connection closed");
         } catch (SQLException e) {
+            log.warn("DB connection couldn't close");
             e.printStackTrace();
         }
     }

@@ -3,6 +3,7 @@ package com.vetrov.fastnet.db.repository;
 import com.vetrov.fastnet.db.builders.QueryBuilder;
 import com.vetrov.fastnet.db.builders.TariffQueryBuilder;
 import com.vetrov.fastnet.db.entity.Tariff;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -16,8 +17,9 @@ public class TariffImpl implements ITariff {
     private static final String UPDATE = "UPDATE internet_provider.tariffs SET name = ?, description = ?, price = ? WHERE id = ?";
     private static final String DELETE = "DELETE FROM internet_provider.tariffs WHERE id = ?";
 
-    private DBManager instance = DBManager.getInstance();
-    private QueryBuilder queryBuilder = new TariffQueryBuilder();
+    private final DBManager instance = DBManager.getInstance();
+    private static final Logger log = Logger.getLogger(TariffImpl.class);
+    private final QueryBuilder<Tariff> queryBuilder = new TariffQueryBuilder();
 
     @Override
     public List<Tariff> getAll() {
@@ -31,26 +33,29 @@ public class TariffImpl implements ITariff {
 
     @Override
     public Tariff getByName(String name) {
-        return (Tariff) this.queryBuilder.executeAndReturn(instance, GET_BY_NAME, name);
+        return this.queryBuilder.executeAndReturn(instance, GET_BY_NAME, name);
     }
 
     @Override
     public Tariff getById(long id) {
-        return (Tariff) queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
+        return queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
     }
 
     @Override
     public void create(Tariff tariff) {
         queryBuilder.execute(instance, CREATE, tariff.getName(), tariff.getPrice(), tariff.getDescription(), tariff.getServiceId());
+        log.info("Tariff was created");
     }
 
     @Override
     public void update(Tariff tariff) {
         queryBuilder.execute(instance, UPDATE, tariff.getName(), tariff.getDescription(), tariff.getPrice(), tariff.getId());
+        log.info("Tariff was updated");
     }
 
     @Override
     public void delete(long id) {
         queryBuilder.execute(instance, DELETE, id);
+        log.info("Tariff was deleted");
     }
 }

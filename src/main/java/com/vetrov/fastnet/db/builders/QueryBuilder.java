@@ -38,7 +38,7 @@ public abstract class QueryBuilder<T extends Entity> {
      * @param query    the database query
      */
     public final void execute(final DBManager instance, final String query) {
-        executeQuery(instance, query, new Object[0]);
+        executeQuery(instance, query);
     }
 
     /**
@@ -106,7 +106,7 @@ public abstract class QueryBuilder<T extends Entity> {
         Connection conn = instance.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             setArgsOfPreparedStatement(statement, args);
-            try (ResultSet rs = statement.executeQuery();) {
+            try (ResultSet rs = statement.executeQuery()) {
                 models = getListOfResult(rs);
             }
         } catch (SQLException e) {
@@ -130,7 +130,7 @@ public abstract class QueryBuilder<T extends Entity> {
         Connection conn = instance.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             setArgsOfPreparedStatement(statement, args);
-            try (ResultSet rs = statement.executeQuery();) {
+            try (ResultSet rs = statement.executeQuery()) {
                 model = getResult(rs);
             }
         } catch (SQLException e) {

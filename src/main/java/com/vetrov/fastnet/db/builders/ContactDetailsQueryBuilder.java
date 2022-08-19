@@ -14,13 +14,7 @@ public class ContactDetailsQueryBuilder extends QueryBuilder<ContactDetails> {
         List<ContactDetails> details1 = new ArrayList<>();
         while (rs.next()) {
             ContactDetails details = new ContactDetails();
-            details.setId(rs.getLong("id"));
-            details.setCity(rs.getString("city"));
-            details.setStreet(rs.getString("street"));
-            details.setHome(rs.getString("home"));
-            details.setApartment(rs.getString("apartment"));
-            details.setEmail(rs.getString("email"));
-            details.setPhone(rs.getString("phone"));
+            setDetailInfo(rs, details);
             details1.add(details);
         }
         return details1;
@@ -30,14 +24,18 @@ public class ContactDetailsQueryBuilder extends QueryBuilder<ContactDetails> {
     public ContactDetails getResult(ResultSet rs) throws SQLException {
         ContactDetails detail = new ContactDetails();
         while (rs.next()) {
-            detail.setId(rs.getLong("id"));
-            detail.setCity(rs.getString("city"));
-            detail.setStreet(rs.getString("street"));
-            detail.setHome(rs.getString("home"));
-            detail.setApartment(rs.getString("apartment"));
-            detail.setEmail(rs.getString("email"));
-            detail.setPhone(rs.getString("phone"));
+            setDetailInfo(rs, detail);
         }
         return detail;
+    }
+
+    private void setDetailInfo(ResultSet rs, ContactDetails details) throws SQLException {
+        details.setId(rs.getLong("id"));
+        details.setCity(rs.getString("city"));
+        details.setStreet(rs.getString("street"));
+        details.setHome(rs.getString("home"));
+        details.setApartment(rs.getString("apartment"));
+        details.setEmail(rs.getString("email"));
+        details.setPhone(rs.getString("phone"));
     }
 }

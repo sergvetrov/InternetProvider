@@ -14,11 +14,7 @@ public class TariffQueryBuilder extends QueryBuilder<Tariff> {
         List<Tariff> tariffs = new ArrayList<>();
         while (rs.next()) {
             Tariff tariff = new Tariff();
-            tariff.setId(rs.getLong("id"));
-            tariff.setName(rs.getString("name"));
-            tariff.setDescription(rs.getString("description"));
-            tariff.setPrice(rs.getDouble("price"));
-            tariff.setServiceId(rs.getLong("services_id"));
+            setTariffInfo(rs, tariff);
             tariffs.add(tariff);
         }
         return tariffs;
@@ -28,12 +24,16 @@ public class TariffQueryBuilder extends QueryBuilder<Tariff> {
     public Tariff getResult(ResultSet rs) throws SQLException {
         Tariff tariff = new Tariff();
         while (rs.next()) {
-            tariff.setId(rs.getLong("id"));
-            tariff.setName(rs.getString("name"));
-            tariff.setDescription(rs.getString("description"));
-            tariff.setPrice(rs.getDouble("price"));
-            tariff.setServiceId(rs.getLong("services_id"));
+            setTariffInfo(rs, tariff);
         }
         return tariff;
+    }
+
+    private void setTariffInfo(ResultSet rs, Tariff tariff) throws SQLException {
+        tariff.setId(rs.getLong("id"));
+        tariff.setName(rs.getString("name"));
+        tariff.setDescription(rs.getString("description"));
+        tariff.setPrice(rs.getDouble("price"));
+        tariff.setServiceId(rs.getLong("services_id"));
     }
 }

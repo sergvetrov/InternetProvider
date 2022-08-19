@@ -2,24 +2,24 @@ package com.vetrov.fastnet.web.filter;
 
 import com.vetrov.fastnet.Path;
 import com.vetrov.fastnet.db.entity.Role;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
-import org.apache.log4j.Logger;
 
 public class SecurityFilter implements Filter {
     private static final Logger log = Logger.getLogger(SecurityFilter.class);
 
     // commands access
-    private static Map<Role, List<String>> accessMap = new HashMap<>();
+    private static final Map<Role, List<String>> accessMap = new HashMap<>();
     private static List<String> commons = new ArrayList<>();
     private static List<String> outOfControl = new ArrayList<>();
 
     @Override
-    public void init(FilterConfig fConfig) throws ServletException {
+    public void init(FilterConfig fConfig) {
         log.info("Filter initialization starts");
 
         // roles

@@ -5,6 +5,7 @@ import com.vetrov.fastnet.db.builders.TariffQueryBuilder;
 import com.vetrov.fastnet.db.builders.UserQueryBuilder;
 import com.vetrov.fastnet.db.entity.Tariff;
 import com.vetrov.fastnet.db.entity.User;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -23,8 +24,9 @@ public class UserImpl implements IUser {
 
     private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'internet_provider' AND TABLE_NAME = 'users'";
 
-    private DBManager instance = DBManager.getInstance();
-    private QueryBuilder queryBuilder = new UserQueryBuilder();
+    private final DBManager instance = DBManager.getInstance();
+    private static final Logger log = Logger.getLogger(TariffImpl.class);
+    private final QueryBuilder<User> queryBuilder = new UserQueryBuilder();
 
     @Override
     public List<User> getAll() {
@@ -33,40 +35,43 @@ public class UserImpl implements IUser {
 
     @Override
     public User getById(long id) {
-        return (User) queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
+        return queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
     }
 
     @Override
     public void create(User user) {
         long id = queryBuilder.getNextAutoIncrement(instance, GET_NEXT_AUTO_INCREMENT);
         queryBuilder.execute(instance, CREATE, user.getLogin(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getSurname(), user.isBlocked(), user.getRoleId(), id, id);
+        log.info("User was created");
     }
 
     @Override
     public void update(User user) {
         queryBuilder.execute(instance, UPDATE, user.getLogin(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getSurname(), user.isBlocked(), user.getRoleId(), user.getId());
+        log.info("User was updated");
     }
 
     @Override
     public void delete(long id) {
         queryBuilder.execute(instance, DELETE, id);
+        log.info("User was deleted");
     }
 
     @Override
     public User getByLogin(String login) {
-        return (User) queryBuilder.executeAndReturn(instance, GET_BY_LOGIN, login);
+        return queryBuilder.executeAndReturn(instance, GET_BY_LOGIN, login);
     }
 
     @Override
     public List<Tariff> getTariffs(User user) {
-        QueryBuilder queryBuilder = new TariffQueryBuilder();
+        QueryBuilder<Tariff> queryBuilder = new TariffQueryBuilder();
         return queryBuilder.executeAndReturnList(instance, GET_LINK_USERS_HAS_TRAFFICS, user.getId());
     }
 
     @Override
     public void addLinksUsersHasTariffs(User user, String[] tariffsId) {
         User tmp = getByLogin(user.getLogin());
-        QueryBuilder queryBuilder = new TariffQueryBuilder();
+        QueryBuilder<Tariff> queryBuilder = new TariffQueryBuilder();
         for (String id : tariffsId) {
             queryBuilder.execute(instance, ADD_LINK_USERS_HAS_TRAFFICS, tmp.getId(), id);
         }

@@ -7,16 +7,17 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.vetrov.fastnet.db.entity.Tariff;
 import com.vetrov.fastnet.db.entity.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Set;
-import org.apache.log4j.Logger;
 
 public class ReportBuilder {
     static Logger log = Logger.getLogger(ReportBuilder.class.getName());
+
     public static void contractPDF(HttpServletResponse response, User user) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -84,7 +85,7 @@ public class ReportBuilder {
             document.close();
 
             openInBrowser(response, baos);
-            log.info("Contract for user was created");
+            log.info("Contract for user was created in PDF file");
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
@@ -94,12 +95,6 @@ public class ReportBuilder {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
-            String tariffName = tariff.getName();
-            if (tariffName.contains("*") || tariffName.contains("\\") || tariffName.contains("/") || tariffName.contains(":") ||
-                    tariffName.contains("?") || tariffName.contains("<") || tariffName.contains(">") || tariffName.contains("\"")) {
-                tariffName = tariff.getName().replace('*', '_');
-            }
-
             PdfWriter.getInstance(document, baos);
             document.open();
 
@@ -150,7 +145,7 @@ public class ReportBuilder {
         // the contentlength
         response.setContentLength(baos.size());
         // write ByteArrayOutputStream to the ServletOutputStream
-        OutputStream os = null;
+        OutputStream os;
         try {
             os = response.getOutputStream();
             baos.writeTo(os);

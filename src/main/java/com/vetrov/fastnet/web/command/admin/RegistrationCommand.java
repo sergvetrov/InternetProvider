@@ -7,6 +7,7 @@ import com.vetrov.fastnet.db.entity.Tariff;
 import com.vetrov.fastnet.db.entity.User;
 import com.vetrov.fastnet.db.services.*;
 import com.vetrov.fastnet.web.command.ICommand;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,8 @@ import java.util.Set;
 
 
 public class RegistrationCommand implements ICommand {
+
+    private static final org.apache.log4j.Logger log = Logger.getLogger(RegistrationCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -90,6 +93,7 @@ public class RegistrationCommand implements ICommand {
         } catch (IOException e) {
             resp = Path.PAGE_ERROR_PAGE;
         }
+        log.info("User registered");
         return resp;
     }
 }

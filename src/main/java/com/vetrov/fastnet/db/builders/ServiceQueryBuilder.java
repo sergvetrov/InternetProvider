@@ -14,9 +14,7 @@ public class ServiceQueryBuilder extends QueryBuilder<PackageServices> {
         List<PackageServices> services = new ArrayList<>();
         while (rs.next()) {
             PackageServices packageServices = new PackageServices();
-            packageServices.setId(rs.getLong("id"));
-            packageServices.setName(rs.getString("name"));
-            packageServices.setDescription(rs.getString("description"));
+            setPackageServicesInfo(rs, packageServices);
             services.add(packageServices);
         }
         return services;
@@ -26,11 +24,14 @@ public class ServiceQueryBuilder extends QueryBuilder<PackageServices> {
     public PackageServices getResult(ResultSet rs) throws SQLException {
         PackageServices packageService = new PackageServices();
         while (rs.next()) {
-            packageService.setId(rs.getLong("id"));
-            packageService.setName(rs.getString("name"));
-            packageService.setDescription(rs.getString("description"));
-
+            setPackageServicesInfo(rs, packageService);
         }
         return packageService;
+    }
+
+    private void setPackageServicesInfo(ResultSet rs, PackageServices packageServices) throws SQLException {
+        packageServices.setId(rs.getLong("id"));
+        packageServices.setName(rs.getString("name"));
+        packageServices.setDescription(rs.getString("description"));
     }
 }

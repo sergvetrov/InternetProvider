@@ -14,9 +14,7 @@ public class AccountQueryBuilder extends QueryBuilder<Account> {
         List<Account> accounts = new ArrayList<>();
         while (rs.next()) {
             Account account = new Account();
-            account.setId(rs.getLong("id"));
-            account.setNumber(rs.getInt("number"));
-            account.setBalance(rs.getDouble("balance"));
+            setAccountInfo(rs, account);
             accounts.add(account);
         }
         return accounts;
@@ -26,10 +24,14 @@ public class AccountQueryBuilder extends QueryBuilder<Account> {
     public Account getResult(ResultSet rs) throws SQLException {
         Account account = new Account();
         while (rs.next()) {
-            account.setId(rs.getLong("id"));
-            account.setNumber(rs.getInt("number"));
-            account.setBalance(rs.getDouble("balance"));
+            setAccountInfo(rs, account);
         }
         return account;
+    }
+
+    private void setAccountInfo(ResultSet rs, Account account) throws SQLException {
+        account.setId(rs.getLong("id"));
+        account.setNumber(rs.getInt("number"));
+        account.setBalance(rs.getDouble("balance"));
     }
 }

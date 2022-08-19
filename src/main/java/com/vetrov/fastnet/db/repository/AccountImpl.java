@@ -17,8 +17,8 @@ public class AccountImpl implements IAccount {
     private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'internet_provider' AND TABLE_NAME = 'users'";
     private static final String GET_MAX_ID = "SELECT MAX(id) FROM accounts";
 
-    private DBManager instance = DBManager.getInstance();
-    private QueryBuilder queryBuilder = new AccountQueryBuilder();
+    private final DBManager instance = DBManager.getInstance();
+    private final QueryBuilder<Account> queryBuilder = new AccountQueryBuilder();
 
     @Override
     public List<Account> getAll() {
@@ -27,7 +27,7 @@ public class AccountImpl implements IAccount {
 
     @Override
     public Account getById(long id) {
-        return (Account) this.queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
+        return this.queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
     }
 
     @Override
